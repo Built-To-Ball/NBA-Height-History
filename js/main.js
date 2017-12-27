@@ -1,9 +1,11 @@
 //JS file, where the magic happens
 
+//Setup SVG size vars
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
+//Setup the x and y axis 
 var x = d3.scale.linear()
     .range([0, width]);
 
@@ -18,28 +20,31 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
+//Used to color code based on position
 var color = d3.scale.category10();
 
+//Initialize the svg
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+//Initalize the mini hover tip
 var tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-5, 0])
     .html(function(d) {
-        return "<span>" + d.name + "</span>";
+        return "<span>" + d.name + "<br>" + d.height + " in<br>" + d.weight + "lbs<br></span>";
     });
 
 svg.call(tip);
 
+//Import and handle the data
 d3.csv("data/player_data.csv", function(error, data) {
     if (error) throw error;
 
     console.log(data.length);
-    console.log(typeof data);
 
     data.forEach(function(d, index, object) {
         d.height = +d.height;
@@ -111,4 +116,4 @@ d3.csv("data/player_data.csv", function(error, data) {
         .style("text-anchor", "end")
         .text(function(d) { return d; });
     
-})
+});
