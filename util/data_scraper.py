@@ -13,6 +13,13 @@ def getHtml(urlString):
 def getSoup(htmlString):
     return BeautifulSoup(htmlString, 'html.parser')
 
+def preprocess_height(height):
+    height = height.split('-')
+    print height
+    feet = height[0]
+    inches = height[1]
+    return int(feet)*12 + int(inches)
+
 def get_player_data(player):
     name = p.find('a').text.strip().encode('ascii', 'ignore')
     year_start = p.find('td', attrs={"data-stat": "year_min"}).text.strip().encode('ascii', 'ignore')
@@ -31,6 +38,8 @@ def get_player_data(player):
     except AttributeError:
         college = ""
     
+    if (height): height = preprocess_height(height)
+
     return (name, year_start, year_end, position, height, weight, birth_date, college)
 
 def write_to_csv(filename, data):
