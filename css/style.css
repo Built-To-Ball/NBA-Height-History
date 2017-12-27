@@ -7,6 +7,15 @@
 body {
     font: 10px sans-serif;
     text-align: center;
+    width: 960px;
+}
+
+#charts {
+    padding: 10px 0;
+}
+
+#year-filter {
+    width: 920px;
 }
 
 .axis path,
@@ -14,6 +23,30 @@ body {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
+}
+
+.background.bar {
+    fill: #ccc;
+}
+
+.foreground.bar {
+    fill: steelblue;
+}
+
+.brush rect.extent {
+    fill: steelblue;
+    fill-opacity: .125;
+}
+
+.brush .resize path {
+    fill: #eee;
+    stroke: #666;
+}
+
+.chart {
+    display: inline-block;
+    height: 151px;
+    margin-bottom: 20px;
 }
 
 .dot {
@@ -26,6 +59,11 @@ body {
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
     border-radius: 1px;
+}
+
+.reset {
+    font-size: 1em;
+    color: rgb(114, 114, 114);
 }
 
 .title {
