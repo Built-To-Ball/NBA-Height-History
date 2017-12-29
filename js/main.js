@@ -127,7 +127,7 @@ d3.csv("data/player_data.csv", function(error, players) {
     
     //Ready to render filters and plot
     renderAll();
-    
+
     //Render the plot legend
     var legend = svg.selectAll(".legend")
         .data(color.domain())
@@ -147,6 +147,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         .attr("dy", ".35em")
         .style("text-anchor", "end")
         .text(function(d) { return d; });
+
     //Handles brush changes
     window.filter = function(filters) {
         filters.forEach(function(d, i) {
