@@ -5,23 +5,14 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-//Setup the x and y axis 
-var x = d3.scale.linear()
-    .range([0, width]);
-
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
 //Used to color code based on position
 var color = d3.scale.category10();
+
+//Setup the x and y axis 
+var x = d3.scale.linear(),
+    y = d3.scale.linear(),
+    xAxis = d3.svg.axis(),
+    yAxis = d3.svg.axis();
 
 //Initialize the svg
 var svg = d3.select("body").append("svg")
@@ -44,8 +35,7 @@ svg.call(tip);
 d3.csv("data/player_data.csv", function(error, players) {
     if (error) throw error;
 
-    console.log(players.length);
-
+    //Preprocess player data
     players.forEach(function(d, index, object) {
         d.height = +d.height;
         d.weight = +d.weight;
@@ -61,73 +51,66 @@ d3.csv("data/player_data.csv", function(error, players) {
     //Create crossfilters for the players
     var player = crossfilter(players),
         all = player.groupAll(),
-        year = player.dimension(function(d) {
-            return d.year_start;
-        }),
-        years = year.group(Math.floor);
+        filter_year = player.dimension(function(d) { return d.year_start; }),
+        filter_years = filter_year.group(Math.floor),
+        filter_weight = player.dimension(function(d) { return d.weight; }),
+        filter_weights = filter_weight.group(function(d) { return Math.floor(d/10)*10; }),
+        filter_height = player.dimension(function(d) { return d.height; }),
+        filter_heights = filter_height.group(Math.floor);
 
+    //Setup the filter barcharts
     var charts = [
         barChart()
-            .dimension(year)
-            .group(years)
+            .dimension(filter_year)
+            .group(filter_years)
           .x(d3.scale.linear()
             .domain([1947, 2019])
-            .rangeRound([0 , 900]))
+            .rangeRound([0 , 900])),
+
+        barChart()
+            .dimension(filter_weight)
+            .group(filter_weights)
+          .x(d3.scale.linear()
+            .domain([110, 370])
+            .rangeRound([0, 425])),
+
+        barChart()
+            .dimension(filter_height)
+            .group(filter_heights)
+          .x(d3.scale.linear()
+            .domain([62, 92])
+            .rangeRound([0, 425]))
     ];
-
-    //Bind filter to DOM and listen for brush events that change the filter
-    var chart = d3.selectAll(".chart")
-        .data(charts)
-        .each(function(chart) {
-            chart.on("brush", renderAll).on("brushend", renderAll);
-        });
-
-    renderAll();
-
-    function render(method) {
-        d3.select(this).call(method);
-    }
-
-    //Handle brush moves on the filter
-    function renderAll() {
-        chart.each(render);
-        d3.select("#active").text((all.value()));
-    }
-
-    window.filter = function(filters) {
-        filters.forEach(function(d, i) {
-            charts[i].filder(d);
-        });
-        renderAll();
-    };
-
-    window.reset = function(i) {
-        charts[i].filter(null);
-        renderAll();
-    };
-
-    x.domain(d3.extent(players, function(d) { return d.weight; })).nice();
-    y.domain(d3.extent(players, function(d) { return d.height; })).nice();
 
     // Render the total.
     d3.selectAll("#total")
     .text((players.length));
 
+    //Render the plot axiss
+    xAxis.scale(x).orient("bottom");
+    x.range([0, width]);
+    yAxis.scale(y).orient("left");
+    y.range([height, 0]);
+    x.domain(d3.extent(players, function(d) { return d.weight; })).nice();
+    y.domain(d3.extent(players, function(d) { return d.height; })).nice();
+
+    //Render the plot x axis
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0, " + height + ")")
         .call(xAxis)
-      .append("text")
+        .append("text")
         .attr("class", "label")
         .attr("x", width)
         .attr("y", -6)
         .style("text-anchor", "end")
         .text("Player Weight (lbs)");
-
+    
+    //Render the plot y axis
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis)
-      .append("text")
+        .append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
         .attr("y", 6)
@@ -135,17 +118,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         .style("text-anchor", "end")
         .text("Player Height (inches)");
 
-    svg.selectAll(".dot")
-        .data(players)
-      .enter().append("circle")
-        .attr("class", "dot")
-        .attr("r", 3)
-        .attr("cx", function(d) { return x(d.weight); })
-        .attr("cy", function(d) { return y(d.height); })
-        .style("fill", function(d) { return color(d.position); })
-        .on("mouseover", tip.show)
-        .on("mouseout", tip.hide);
-
+    //Render the plot legend
     var legend = svg.selectAll(".legend")
         .data(color.domain())
       .enter().append("g")
@@ -165,6 +138,65 @@ d3.csv("data/player_data.csv", function(error, players) {
         .style("text-anchor", "end")
         .text(function(d) { return d; });
     
+    //Bind filters to DOM and listen for brush events that change the filter
+    var chart = d3.selectAll(".chart")
+        .data(charts)
+        .each(function(chart) {
+            chart.on("brush", renderAll).on("brushend", renderAll);
+    });
+
+    //Ready to render filters and plot
+    renderAll();
+
+    //Handles brush changes
+    window.filter = function(filters) {
+        filters.forEach(function(d, i) {
+            charts[i].filter(d);
+        });
+        renderAll();
+    };
+
+    //Handles brush resets
+    window.reset = function(i) {
+        charts[i].filter(null);
+        renderAll();
+    };
+
+    //Renderer
+    function render(method) {
+        d3.select(this).call(method);
+    }
+
+    //Renders filters and plots
+    function renderAll() {
+        chart.each(render);
+        updatePlot();
+        d3.select("#active").text((all.value()));
+    }
+
+    //Handles rendering plot with updated data
+    function updatePlot() {
+        //Get updated data
+        players = filter_year.top(Infinity);
+
+        //Remove all dots currently on svg
+        svg.selectAll(".dot").remove();
+
+        //Add all dots with updated data
+        plot = svg.selectAll(".dot")
+            .data(players)
+          .enter().append("circle")
+            .attr("class", "dot")
+            .attr("r", 3)
+            .attr("cx", function(d) { return x(d.weight); })
+            .attr("cy", function(d) { return y(d.height); })
+            .style("fill", function(d) { return color(d.position); })
+            .on("mouseover", tip.show)
+            .on("mouseout", tip.hide);
+        
+    }
+
+    //The barchart function
     function barChart() {
         if (!barChart.id) barChart.id = 0;
     
@@ -172,7 +204,7 @@ d3.csv("data/player_data.csv", function(error, players) {
             x,
             y = d3.scale.linear().range([100, 0]),
             id = barChart.id++,
-            axis = d3.svg.axis().orient("bottom"),
+            axis = d3.svg.axis().orient("bottom").tickFormat(d3.format("d")),
             brush = d3.svg.brush(),
             brushDirty,
             dimension,
@@ -265,7 +297,6 @@ d3.csv("data/player_data.csv", function(error, players) {
             var e = +(d == "e"),
                 x = e ? 1 : -1,
                 y = height / 3;
-            console.log(x);
             return "M" + (.5 * x) + "," + y
                 + "A6,6 0 0 " + e + " " + (6.5 * x) + "," + (y + 6)
                 + "V" + (2 * y - 6)

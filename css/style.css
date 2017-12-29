@@ -6,8 +6,16 @@
 
 body {
     font: 10px sans-serif;
-    text-align: center;
     width: 960px;
+    text-align: center;
+}
+
+#body {
+    position: relative;
+}
+
+#body p {
+    font: 1.5em sans-serif;
 }
 
 #charts {
@@ -16,6 +24,14 @@ body {
 
 #year-filter {
     width: 920px;
+}
+
+#weight-filter {
+    width: 450px;
+}
+
+#height-filter {
+    width: 450px;
 }
 
 .axis path,
