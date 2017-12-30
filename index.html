@@ -8,29 +8,37 @@
 
   <h1>Built To Ball</h1>
   <p>The following chart includes all 4544 players to have ever played in the NBA dating back to 1947.</p>
-
-
-  <div id="charts">
-    <div id="year-filter" class="chart">
-        <div class="title">Rookie Year</div>
-        <div class="title-reset"></div>
-    </div>
-    <div id="weight-filter" class="chart">
-      <div class="title">Weight</div>
-      <div class="title-reset"></div>
-    </div>
-    <div id="height-filter" class="chart">
-        <div class="title">Height</div>
-        <div class="title-reset"></div>
-    </div>
-  </div>
-
+  <p>To see a subset of players, adjust the weight, height, and year filters by clicking and dragging them.</p>
+  
   <div id="plots">
       <div id="scatter-plot" class="plot">
         <div class="title">Height vs Weight</div>
         <div class="total_count"><span id="active">-</span> of <span id="total"></span> players selected.</div>
       </div>
+  </div>
+
+  <div id="charts">
+    <div id="weight-filter" class="chart">
+        <div class="title">Weight</div>
+        <div class="title-reset"></div>
     </div>
+     <div id="height-filter" class="chart">
+          <div class="title">Height</div>
+          <div class="title-reset"></div>
+    </div>
+    <div id="year-filter" class="chart">
+        <div class="title">Rookie Year</div>
+        <div class="title-reset"></div>
+    </div>
+  </div>
+
+  <div id="lists">
+    <div id="top-height" class="list"><div class="list-title">Top 10 Tallest Players</div></div>
+    <div id="bot-height" class="list"><div class="list-title">Top 10 Shortest Players</div></div>
+    <div id="top-weight" class="list"><div class="list-title">Top 10 Heaviest Players</div></div>
+    <div id="bot-weight" class="list"><div class="list-title">Top 10 Lightest Players</div></div>
+  </div>
+
 </div>
 
 <link rel="stylesheet" href="css/style.css" />

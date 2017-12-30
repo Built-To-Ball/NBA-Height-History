@@ -6,7 +6,6 @@
 
 body {
     font: 10px sans-serif;
-    width: 960px;
     text-align: center;
 }
 
@@ -14,12 +13,23 @@ body {
     position: relative;
 }
 
+#body h1 {
+    font-size: 3em;
+    font-weight: 200;
+}
+
 #body p {
     font: 1.5em sans-serif;
+    margin: 0em;
+    font-weight: 200;
 }
 
 #charts {
     padding: 10px 0;
+}
+
+#lists {
+    max-height: 250px;
 }
 
 #year-filter {
@@ -77,6 +87,32 @@ body {
     border-radius: 1px;
 }
 
+.list {
+    display:inline-block;
+    width: 225px;
+    min-height: 250px;
+    line-height: 1.5em;
+    font-size: 1.25em;
+}
+
+.list .player {
+    font-size: 1em;
+    font-weight: 200;
+    line-height: 1.5em;
+    background: #eee;
+    margin-bottom: 1px;
+}
+
+.list .player div {
+    display:inline-block;
+}
+
+.list-title {
+    font-size: 1.25em;
+    font-weight: 400;
+    padding-bottom: 0.5em;
+}
+
 .reset {
     font-size: 1em;
     color: rgb(114, 114, 114);
@@ -84,6 +120,8 @@ body {
 
 .title {
     font-size: 2em;
+    padding-top: 1em;
+    font-weight: 200;
 }
 
 .total_count {

@@ -15,7 +15,7 @@ var x = d3.scale.linear(),
     yAxis = d3.svg.axis();
 
 //Initialize the svg
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".plot").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -57,30 +57,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         filter_weights = filter_weight.group(function(d) { return Math.floor(d/10)*10; }),
         filter_height = player.dimension(function(d) { return d.height; }),
         filter_heights = filter_height.group(Math.floor);
-
-    //Setup the filter barcharts
-    var charts = [
-        barChart()
-            .dimension(filter_year)
-            .group(filter_years)
-          .x(d3.scale.linear()
-            .domain([1947, 2019])
-            .rangeRound([0 , 900])),
-
-        barChart()
-            .dimension(filter_weight)
-            .group(filter_weights)
-          .x(d3.scale.linear()
-            .domain([110, 370])
-            .rangeRound([0, 425])),
-
-        barChart()
-            .dimension(filter_height)
-            .group(filter_heights)
-          .x(d3.scale.linear()
-            .domain([62, 92])
-            .rangeRound([0, 425]))
-    ];
+        filter_position = player.dimension(function(d) { return d.position; });
 
     // Render the total.
     d3.selectAll("#total")
@@ -118,13 +95,50 @@ d3.csv("data/player_data.csv", function(error, players) {
         .style("text-anchor", "end")
         .text("Player Height (inches)");
 
-    //Bind filters to DOM and listen for brush events that change the filter
+    var charts = [
+        barChart()
+            .dimension(filter_weight)
+            .group(filter_weights)
+            .x(d3.scale.linear()
+            .domain([110, 370])
+            .rangeRound([0, 425])),
+
+        barChart()
+            .dimension(filter_height)
+            .group(filter_heights)
+            .x(d3.scale.linear()
+            .domain([62, 92])
+            .rangeRound([0, 425])),
+
+        barChart()
+            .dimension(filter_year)
+            .group(filter_years)
+            .x(d3.scale.linear()
+            .domain([1947, 2019])
+            .rangeRound([0 , 900]))
+    ];
+
+    //Iniatilize the filter barcharts
     var chart = d3.selectAll(".chart")
         .data(charts)
         .each(function(chart) {
             chart.on("brush", renderAll).on("brushend", renderAll);
     });
-    
+
+    var lists = [
+        d3.select("#top-height"),
+        d3.select("#bot-height"),
+        d3.select("#top-weight"),
+        d3.select("#bot-weight")
+    ];
+
+    //Initialize the "top 10" lists
+    var list = d3.selectAll(".list")
+        .data(lists)
+        .each(function(list) {
+            list.data([playerList]);
+        });
+
     //Ready to render filters and plot
     renderAll();
 
@@ -140,7 +154,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", color);
-  
+
     legend.append("text")
         .attr("x", width - 24)
         .attr("y", 9)
@@ -170,8 +184,42 @@ d3.csv("data/player_data.csv", function(error, players) {
     //Renders filters and plots
     function renderAll() {
         chart.each(render);
+        list.each(render);
         updatePlot();
         d3.select("#active").text((all.value()));
+    }
+
+    function playerList(div) {
+
+        var topPlayers;
+        switch(this[0][0].id) {
+            case "top-height":
+                topPlayers = filter_height.top(10);
+                break;
+            case "bot-height":
+                topPlayers = filter_height.bottom(10);
+                break;
+            case "top-weight":
+                topPlayers = filter_weight.top(10);
+                break;
+            case "bot-weight":
+                topPlayers = filter_weight.bottom(10);
+                break;
+        }
+
+        div.each(function() {
+
+            d3.select(this).selectAll(".player").remove();
+            var player = d3.select(this).selectAll(".player")
+                .data(topPlayers);
+
+            var playerEnter = player.enter().append("div")
+                .attr("class", "player");
+            
+            playerEnter.append("div")
+                .attr("class", "name")
+                .text(function(d) { return d.name; });
+        });
     }
 
     //Handles rendering plot with updated data
