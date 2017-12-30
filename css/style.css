@@ -11,6 +11,8 @@ body {
 
 #body {
     position: relative;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 #body h1 {
@@ -26,6 +28,11 @@ body {
 
 #charts {
     padding: 10px 0;
+}
+
+#footer {
+    font-size: 1em;
+    font-weight: 200;
 }
 
 #lists {
@@ -52,11 +59,13 @@ body {
 }
 
 .background.bar {
-    fill: #ccc;
+    fill: #fff;
+    stroke: steelblue;
 }
 
 .foreground.bar {
-    fill: steelblue;
+    stroke: steelblue;
+    fill: rgba(70, 130, 180, 0.5);
 }
 
 .brush rect.extent {
@@ -76,7 +85,7 @@ body {
 }
 
 .dot {
-    stroke: #000;
+    fill: #fff;
 }
 
 .d3-tip {

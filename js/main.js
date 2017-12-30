@@ -153,7 +153,8 @@ d3.csv("data/player_data.csv", function(error, players) {
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
-        .style("fill", color);
+        .style("fill", color)
+        .style("opacity", "0.7");
 
     legend.append("text")
         .attr("x", width - 24)
@@ -235,12 +236,18 @@ d3.csv("data/player_data.csv", function(error, players) {
             .data(players)
           .enter().append("circle")
             .attr("class", "dot")
-            .attr("r", 3)
+            .attr("r", 4)
             .attr("cx", function(d) { return x(d.weight); })
             .attr("cy", function(d) { return y(d.height); })
-            .style("fill", function(d) { return color(d.position); })
-            .on("mouseover", tip.show)
-            .on("mouseout", tip.hide);
+            .style("stroke", function(d) { return color(d.position); })
+            .on("mouseover", function(d) {
+                tip.show(d);
+                d3.select(this).style("fill", function(d) { return color(d.position);});
+            })
+            .on("mouseout", function(d) {
+                tip.hide(d);
+                d3.select(this).style("fill", "#fff");
+            });
         
     }
 
