@@ -5,32 +5,56 @@
 */
 
 //Average indonesian, american, canadian, dutch, and nba player
-var dataset = [ 62.3, 69, 69.5, 72.5, 79.0 ],
+var dataset = [ 
+                {label:"Indonesia",     value:62.3},
+                {label:"USA",           value:69},
+                {label:"Canada",        value:69.5},
+                {label:"Netherlands",   value:72.3},
+                {label:"NBA",           value:79.0},
+            ];
     hChartwidth = 400;
-    hChartheight = 200;
+    hChartheight = 220;
 
+// Add the svg for the chart
 var hChartsvg = d3.select(".hchart").append("svg")
             .attr("id", "hchartsvg")
             .attr("width", hChartwidth)
             .attr("height", hChartheight);
 
-hChartsvg.selectAll("rect")
+bar = hChartsvg.selectAll("g")
     .data(dataset)
     .enter()
-    .append("rect")
-    .attr("x", function(_, i) { return i * 80; })
-    .attr("y", function(d) { return hChartheight - (d-55)*7; })
-    .attr("width", 40)
-    .attr("height", function(d) { return (d-55)*7; })
-    .style("fill", function(d) { return "rgba(" + (d3.round(d*3) - 50) + ", 10, 10, 0.8)"; });
+    .append("g");
 
-hChartsvg.selectAll("text")
-    .data(dataset)
-    .enter()
-    .append("text")
-    .text(function(d) { return d3.round(d); })
+//Add title to chart
+hChartsvg.append("text")
+    .attr("class" , "hCharttitle")
+    .attr("x", 20)
+    .attr("y", 20)
+    .text("Average Male Height (inches)");
+
+// Add bars to the chart svg
+bar.append("rect")
     .attr("x", function(_, i) { return (i*80) + 20; })
-    .attr("y", function(d) { return hChartheight - (d-55)*7 + 20; })
-    .attr("text-anchor", "middle")
-    .attr("font-size", "1.25em")
-    .attr("font-weight", "100");
+    .attr("y", function(d) { return hChartheight - (d.value-55)*7 - 50; })
+    .attr("width", 40)
+    .attr("height", function(d) { return (d.value-55)*7; })
+    .style("fill", function(d) { 
+        if (d.value == 79.0) { return "rgba(192, 57, 43, 0.9)"; 
+        } else { return "rgba(127, 140, 141, 0.8)"; }
+    });
+
+// Add values to the bars
+bar.append("text")
+    .attr("class", "hChartvalue")
+    .text(function(d) { return d3.round(d.value); })
+    .attr("x", function(_, i) { return (i*80) + 40; })
+    .attr("y", function(d) { return hChartheight - (d.value-55)*7 - 30; });
+
+// Add labels to the bars
+bar.append("text")
+    .attr("class", "hChartlabel")
+    .text(function(d) { console.log(d.label);
+        return d.label; })
+    .attr("x", function(_, i) { return (i*80) + 40; })
+    .attr("y", hChartheight - 30);

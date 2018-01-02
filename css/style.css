@@ -5,7 +5,8 @@
 */
 
 body {
-    font: 10px sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 10px;
     text-align: center;
 }
 
@@ -25,8 +26,8 @@ p {
 
 #body {
     position: relative;
-    max-width: 960px;
-    padding: 0 100px;
+    max-width: 1050px;
+    padding: 0 200px;
 }
 
 #body h1 {
@@ -47,19 +48,42 @@ p {
 
 #footer {
     position: relative;
-    max-width: 960px;
     margin: 50px 100px;
     font-size: 1em;
     font-weight: 200;
 }
 
 #heightchart {
-    max-width: 950px;
+    max-width: 650px;
     fill: #fff;
+    text-align: left;
+}
+
+#heightchart svg {
+    margin: 4em 0 0 10em;
 }
 
 #heightchart p {
     text-align: left;
+}
+
+#heightchart .hCharttitle {
+    fill: #000;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+#heightchart .hChartvalue {
+    text-anchor: middle;
+    font-size: 1.25em;
+    font-weight: 100;
+}
+
+#heightchart .hChartlabel {
+    text-anchor: middle;
+    font-size: 1.25em;
+    font-weight: 100;
+    fill: #000;
 }
 
 #intro {
@@ -67,12 +91,13 @@ p {
 }
 
 #intro p {
-    max-width: 950px;
+    max-width: 650px;
     margin: 1em 0;
 }
 
 #plots p {
     margin: 0em;
+    font-size: 1.75em;
 }
 
 #lists {
