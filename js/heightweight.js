@@ -35,6 +35,7 @@ svg.call(tip);
 d3.csv("data/player_data.csv", function(error, players) {
     if (error) throw error;
 
+    console.log("The following players have no registered weights/heights:");
     //Preprocess player data
     players.forEach(function(d, index, object) {
         d.height = +d.height;
@@ -44,6 +45,7 @@ d3.csv("data/player_data.csv", function(error, players) {
 
         //There are a few players with no weights, get rid of them
         if (d.weight == 0) {
+            console.log(d.name);
             object.splice(index, 1);
         }
     });
@@ -94,6 +96,17 @@ d3.csv("data/player_data.csv", function(error, players) {
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("Player Height (inches)");
+
+    //Setup zoom brushing
+    var zoombrush = d3.svg.brush()
+        .y(y)
+        .x(x)
+        .on("brushend", brushended);
+    
+    //Attach the zoom-brush to the svg
+    var zbrush = svg.append("g")
+        .attr("class", "zoom-brush")
+        .call(zoombrush);
 
     var charts = [
         barChart()
@@ -154,7 +167,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", color)
-        .style("opacity", "0.7");
+        .style("opacity", "0.6");
 
     legend.append("text")
         .attr("x", width - 24)
@@ -190,12 +203,33 @@ d3.csv("data/player_data.csv", function(error, players) {
         d3.select("#active").text((all.value()));
     }
 
+    //Handles the zoom-brush
+    function brushended() {
+        var s = zoombrush.extent();
+        // svg.selectAll(".selected").classed("selected", false)
+        //     .transition().duration(1000).attr("r", 4);
+          
+        // var selCir = svg.selectAll("circle")
+        //     .filter(function(d) {
+        //     return s[0][0] <= d.weight && s[1][0] >= d.weight && s[0][1] <= d.height && s[1][1] >= d.height;
+        // });
+
+        // selCir.transition().duration(1000)
+        //     .attr("r", 10);
+
+        // selCir.classed("selected", function(d, i) {
+        //     return !d3.select(this).classed("selected");
+        // });
+    }
+
+    //Handles rendering the top player lists
     function playerList(div) {
 
         var topPlayers;
         switch(this[0][0].id) {
             case "top-height":
                 topPlayers = filter_height.top(10);
+
                 break;
             case "bot-height":
                 topPlayers = filter_height.bottom(10);
@@ -219,22 +253,24 @@ d3.csv("data/player_data.csv", function(error, players) {
             
             playerEnter.append("div")
                 .attr("class", "name")
-                .text(function(d) { return d.name; });
+                .text(function(d) { return (d.name); });
         });
     }
 
     //Handles rendering plot with updated data
     function updatePlot() {
+
+        svg.selectAll(".dot").remove();
+
         //Get updated data
         players = filter_year.top(Infinity);
 
-        //Remove all dots currently on svg
-        svg.selectAll(".dot").remove();
-
         //Add all dots with updated data
         plot = svg.selectAll(".dot")
-            .data(players)
-          .enter().append("circle")
+            .data(players);
+
+        //Update new players
+        plot.enter().append("circle")
             .attr("class", "dot")
             .attr("r", 4)
             .attr("cx", function(d) { return x(d.weight); })
@@ -248,7 +284,7 @@ d3.csv("data/player_data.csv", function(error, players) {
                 tip.hide(d);
                 d3.select(this).style("fill", "#fff");
             });
-        
+
     }
 
     //The barchart function
@@ -269,7 +305,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         function chart(div) {
             var width = x.range()[1],
                 height = y.range()[0];
-    
+            
             y.domain([0, group.top(1)[0].value]);
     
             div.each(function() {

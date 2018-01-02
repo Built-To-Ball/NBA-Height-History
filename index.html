@@ -9,19 +9,46 @@
   <!-- body -->
   <body>
     <div id="body">
-      <!-- Logo -->
-      <a href="https://github.com/abidrahman"><img src="logo.png" width="50" height="50"></a>
+      <div id="intro">
+        <!-- Logo -->
+        <a href="https://github.com/abidrahman"><img src="logo.png" width="50" height="50"></a>
+        <hr/>
+        <h1>Built To Ball</h1>
+        <h2>A breakdown of the NBA's genetic history</h2>
+        <p>Basketball is a game of endurance, precision, agility, speed, and height? 
+           It takes years of dedication and hard work to become a professional 
+           athlete, for basketball however, it can take a little more than just that.
+           Out of the four major professional sports leagues, the NBA is the only league
+           where the players can be spotted at any public venue, simply because of their height.
+           This page is dedicated to exploring the significance of a player's height in their
+           ability to make it to the NBA and how an NBA player's height and genetic makeup
+           has impacted the game of basketball over the years.
+        </p>
+        <p>An NBA basketball hoop stands at 120 inches off the floor. The goal of an NBA 
+          player is simple, get the ball in the bucket, and prevent the other team from
+          doing the same. This gives a distinct natural advantage to those who are able 
+          to reach the hoop better than others. The longer your legs, the higher you can
+          jump, the faster you can run. The longer your arms, the higher you can reach and
+          the wider you can touch. It is quite simple to see why people who are taller are
+          more inclined to succeed in the game of basketball. But how big of a distinction
+          is there between the height of an NBA player, and the height of an average man 
+          on the streets?
+        </p>
+        <p>The average American male is 69 inches tall, to put this into perspective, out
+           of the 400+ active NBA players in the league at the beginning of 2018, 
+           only one player, Isaiah Thomas, is considered to be the same height as that
+           of an average American male. Not a single player is shorter than the average man.
+        </p>
 
-      <h1>Built To Ball</h1>
-      <p>The following chart includes all 4544 players to have ever played in the NBA dating back to 1947.</p>
-      <p>To see a subset of players, adjust the weight, height, and year filters by clicking and dragging on the bar charts.</p>
-      
+      </div>
       <!-- Plots -->
       <div id="plots">
           <div id="scatter-plot" class="plot">
             <div class="title">Height vs Weight</div>
             <div class="total_count"><span id="active">-</span> of <span id="total"></span> players selected.</div>
           </div>
+          <p>The above chart includes all 4544 players to have ever played in the NBA dating back to 1947.</p>
+          <p>To see a subset of players, adjust the weight, height, and year filters by clicking and dragging on the bar charts.</p>
       </div>
 
       <!-- Charts -->
@@ -61,6 +88,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/heightweight.js"></script>
+  <script src="js/heightbarchart.js"></script>
 
 </html>

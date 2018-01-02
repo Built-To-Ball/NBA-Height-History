@@ -9,20 +9,35 @@ body {
     text-align: center;
 }
 
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #111;
+    margin: 1em 0;
+    padding: 0;
+}
+
 #body {
     position: relative;
     max-width: 960px;
-    margin: 0 auto;
+    padding: 25px 100px;
 }
 
 #body h1 {
-    font-size: 3em;
-    font-weight: 200;
+    font-size: 6em;
+    font-weight: 800;
+    margin: 0;
+}
+
+#body h2 {
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0 0 2em 0;
 }
 
 #body p {
     font: 1.5em sans-serif;
-    margin: 0em;
     font-weight: 200;
 }
 
@@ -31,8 +46,24 @@ body {
 }
 
 #footer {
+    position: relative;
+    max-width: 960px;
+    margin: 50px 100px;
     font-size: 1em;
     font-weight: 200;
+}
+
+#intro {
+    text-align: left;
+}
+
+#intro p {
+    max-width: 700px;
+    margin: 1em 0;
+}
+
+#plots p {
+    margin: 0em;
 }
 
 #lists {
@@ -108,7 +139,6 @@ body {
     font-size: 1em;
     font-weight: 200;
     line-height: 1.5em;
-    background: #eee;
     margin-bottom: 1px;
 }
 
@@ -135,4 +165,9 @@ body {
 
 .total_count {
     font-size: 1.5em;
+}
+
+.zoom-brush rect.extent {
+    fill: #fff;
+    stroke: #000;
 }
