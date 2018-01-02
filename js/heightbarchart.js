@@ -29,5 +29,8 @@ hChartsvg.selectAll("text")
     .enter()
     .append("text")
     .text(function(d) { return d3.round(d); })
-    .attr("x", function(_, i) { return (i*80) + 13.5; })
-    .attr("y", function(d) { return hChartheight - (d-55)*7 + 20; });
+    .attr("x", function(_, i) { return (i*80) + 20; })
+    .attr("y", function(d) { return hChartheight - (d-55)*7 + 20; })
+    .attr("text-anchor", "middle")
+    .attr("font-size", "1.25em")
+    .attr("font-weight", "100");
