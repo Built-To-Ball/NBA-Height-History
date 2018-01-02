@@ -18,10 +18,15 @@ hr {
     padding: 0;
 }
 
+p {
+    font: 1.5em sans-serif;
+    font-weight: 200;
+}
+
 #body {
     position: relative;
     max-width: 960px;
-    padding: 25px 100px;
+    padding: 0 100px;
 }
 
 #body h1 {
@@ -36,11 +41,6 @@ hr {
     margin: 0 0 2em 0;
 }
 
-#body p {
-    font: 1.5em sans-serif;
-    font-weight: 200;
-}
-
 #charts {
     padding: 10px 0;
 }
@@ -51,6 +51,21 @@ hr {
     margin: 50px 100px;
     font-size: 1em;
     font-weight: 200;
+}
+
+#heightchart {
+    max-width: 700px;
+    font-family: sans-serif;
+    fill: #fff;
+    font-size: 1.2em;
+    font-weight: 100;
+}
+
+#heightchart p {
+    text-align: left;
+    font-size: 1.25em;
+    max-width: 700px;
+    margin: 1em 0;
 }
 
 #intro {
