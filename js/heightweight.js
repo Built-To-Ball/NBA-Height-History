@@ -26,7 +26,7 @@ var tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-5, 0])
     .html(function(d) {
-        return "<span>" + d.name + "<br>" + d.height + " in<br>" + d.weight + "lbs<br></span>";
+        return "<span>" + d.name + "<br>" + d.height + " in<br>" + d.weight + " lbs<br></span>";
     });
 
 plotSVG.call(tip);
@@ -229,7 +229,6 @@ d3.csv("data/player_data.csv", function(error, players) {
         switch(this[0][0].id) {
             case "top-height":
                 topPlayers = filter_height.top(10);
-
                 break;
             case "bot-height":
                 topPlayers = filter_height.bottom(10);
@@ -254,6 +253,17 @@ d3.csv("data/player_data.csv", function(error, players) {
             playerEnter.append("div")
                 .attr("class", "name")
                 .text(function(d) { return (d.name); });
+
+            playerEnter.append("div")
+                .attr("class", "value")
+                .text(function(d) { 
+                    if (this.parentNode.parentNode.id == "top-height" | 
+                        this.parentNode.parentNode.id == "bot-height") {
+                            return (d.height + " in"); 
+                        } else {
+                            return (d.weight + " lbs");
+                        }
+                });
         });
     }
 

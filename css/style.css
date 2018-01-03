@@ -102,6 +102,7 @@ p {
 
 #lists {
     max-height: 250px;
+    margin: 0 20px 0 40px;
 }
 
 #year-filter {
@@ -162,11 +163,12 @@ p {
 }
 
 .list {
-    display:inline-block;
-    width: 225px;
+    display: inline-block;
+    text-align: left;
     min-height: 250px;
     line-height: 1.5em;
     font-size: 1.25em;
+    width: 220px;
 }
 
 .list .player {
@@ -176,8 +178,13 @@ p {
     margin-bottom: 1px;
 }
 
-.list .player div {
-    display:inline-block;
+.list .player .name {
+    display: inline-block;
+}
+
+.list .player .value {
+    float: right;
+    margin-right: 50px;
 }
 
 .list-title {
