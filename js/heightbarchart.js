@@ -54,7 +54,6 @@ bar.append("text")
 // Add labels to the bars
 bar.append("text")
     .attr("class", "hChartlabel")
-    .text(function(d) { console.log(d.label);
-        return d.label; })
+    .text(function(d) { return d.label; })
     .attr("x", function(_, i) { return (i*80) + 40; })
     .attr("y", hChartheight - 30);
