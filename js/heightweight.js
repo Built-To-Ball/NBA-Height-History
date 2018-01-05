@@ -35,19 +35,12 @@ plotSVG.call(tip);
 d3.csv("data/player_data.csv", function(error, players) {
     if (error) throw error;
 
-    console.log("The following players have no registered weights/heights:");
     //Preprocess player data
     players.forEach(function(d, index, object) {
         d.height = +d.height;
         d.weight = +d.weight;
         d.year_start = +d.year_start;
         d.year_end = +d.year_end;
-
-        //There are a few players with no weights, get rid of them
-        if (d.weight == 0) {
-            console.log(d.name);
-            object.splice(index, 1);
-        }
     });
 
     //Create crossfilters for the players
