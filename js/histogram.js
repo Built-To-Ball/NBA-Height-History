@@ -16,45 +16,17 @@ histSVG.attr("height", histHeight)
 var histoY = d3.scale.linear(),
     histoYaxis = d3.svg.axis();
 
-var delta = 0.001,
-    i = 0, j,
-    n = 100, // Total number of random points.
-    k = 20; // Number of points to replace per frame.
-
-//The location of the initial hexagons
-var rx = histWidth / 2,
-    ry = d3.random.normal(histHeight/2, 40),
-    points = d3.range(n).map(function() { return [rx, ry()]; });
-
 //The color of the hexagons, range between light red and red
 var histColor = d3.scale.linear()
     .domain([0, 20])
     .range(["#E8B5B3", "#D64640"]);
 
-//Init the hexbin
-var hexbin = d3.hexbin()
-    .radius(15)
-    .extent([[0, 0], [histWidth, histHeight]]);
-
-var hexagon = histSVG.selectAll("path")
-    .data(hexbin(points))
-    .enter().append("path")
-        .attr("d", hexbin.hexagon(14.5))
-        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-        .attr("fill", function(d) { return histColor(d.length); });
-
-
+//Setup the Y Axis
 histoYaxis.scale(histoY).orient("left");
 histoY.range([histHeight - 20, 20]);
 histoY.domain([60,95]);
 
-histSVG.append("text")
-    .attr("class", "yearLabelTitle")
-    .attr("x", 185)
-    .attr("y", 25)
-    .text("Rookie Year: ");
-
-//Render the plot y axis
+//Render the Y axis
 histSVG.append("g")
     .attr("class", "y axis")
     .attr("transform", "translate(50, 0)")
@@ -68,18 +40,36 @@ histSVG.append("g")
     .style("text-anchor", "end")
     .text("Player Height (inches)");
 
+//Render the year label title
+histSVG.append("text")
+    .attr("class", "yearLabelTitle")
+    .attr("x", 185)
+    .attr("y", 25)
+    .text("Rookie Year: ");
 
+//Import the data
 d3.csv("data/player_data.csv", function(error, players) {
     if (error) throw error;
 
-    //For each year, get an array of the height values
     var years = {},
         numYears = 0,
-        currYear = 0;
+        currYear = 0,
+        delta = 0.001,
+        i = 0, j,
+        n = 100, // Total number of random points.
+        k = 20; // Number of points to replace per frame.
 
+    //The location of the initial hexagons
+    var rx = histWidth / 2,
+        ry = d3.random.normal(histHeight/2, 40),
+        points = d3.range(n).map(function() { return [rx, ry()]; });
+
+    //Preprocess data
     players.forEach(function(d, index, object) {
         d.height = +d.height;
         d.year_start = +d.year_start;
+
+        //For each year, get an array of the height values
         if (!(d.year_start in years)) {
             years[d.year_start] = [];
             numYears += 1;
@@ -87,7 +77,10 @@ d3.csv("data/player_data.csv", function(error, players) {
         years[d.year_start].push(d.height);
     });
 
-    console.log(years);
+    //Init the hexbin
+    var hexbin = d3.hexbin()
+        .radius(15)
+        .extent([[0, 0], [histWidth, histHeight]]);
 
     d3.interval(function(elapsed) {
         rx = histWidth / 2,
@@ -95,7 +88,9 @@ d3.csv("data/player_data.csv", function(error, players) {
 
         for (j = 0; j < k; ++j, i = (i + 1) % n) points[i][0] = rx, points[i][1] = ry();
 
-        hexagon = hexagon
+        console.log(points);
+
+        hexagon = histSVG.selectAll("path")
             .data(hexbin(points), function(d) { return d.x + "," + d.y; });
     
         histSVG.selectAll(".hex").data(hexbin(points), function(d) { return d.x + "," + d.y; }).exit().remove();
@@ -117,7 +112,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         currYear += 1;
         if (currYear == numYears) { currYear = 0; }
     
-    }, 350);
+    }, 200);
 
 });
 
