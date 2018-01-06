@@ -68,28 +68,56 @@ histSVG.append("g")
     .style("text-anchor", "end")
     .text("Player Height (inches)");
 
-d3.interval(function(elapsed) {
-    rx = histWidth / 2,
-    ry = d3.random.normal((histHeight/2) + 40*Math.sin(elapsed * delta), 40);
-    for (j = 0; j < k; ++j, i = (i + 1) % n) points[i][0] = rx, points[i][1] = ry();
 
-    hexagon = hexagon
-        .data(hexbin(points), function(d) { return d.x + "," + d.y; });
+d3.csv("data/player_data.csv", function(error, players) {
+    if (error) throw error;
 
-    histSVG.selectAll(".hex").data(hexbin(points), function(d) { return d.x + "," + d.y; }).exit().remove();
-    histSVG.select(".yearLabel").remove();
+    //For each year, get an array of the height values
+    var years = {},
+        numYears = 0,
+        currYear = 0;
 
-    hexagon = hexagon.enter().append("path")
-        .attr("class", "hex")
-        .attr("d", hexbin.hexagon(14.5))
-        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+    players.forEach(function(d, index, object) {
+        d.height = +d.height;
+        d.year_start = +d.year_start;
+        if (!(d.year_start in years)) {
+            years[d.year_start] = [];
+            numYears += 1;
+        }
+        years[d.year_start].push(d.height);
+    });
 
-    histSVG.selectAll(".hex").attr("fill", function(d) { return histColor(d.length); });
+    console.log(years);
 
-    histSVG.append("text")
-        .attr("class", "yearLabel")
-        .attr("x", 200)
-        .attr("y", 50)
-        .text("2018");
+    d3.interval(function(elapsed) {
+        rx = histWidth / 2,
+        ry = d3.random.normal((histHeight/2) + 40*Math.sin(elapsed * delta), 40);
 
-}, 100);
+        for (j = 0; j < k; ++j, i = (i + 1) % n) points[i][0] = rx, points[i][1] = ry();
+
+        hexagon = hexagon
+            .data(hexbin(points), function(d) { return d.x + "," + d.y; });
+    
+        histSVG.selectAll(".hex").data(hexbin(points), function(d) { return d.x + "," + d.y; }).exit().remove();
+        histSVG.select(".yearLabel").remove();
+    
+        hexagon = hexagon.enter().append("path")
+            .attr("class", "hex")
+            .attr("d", hexbin.hexagon(14.5))
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+    
+        histSVG.selectAll(".hex").attr("fill", function(d) { return histColor(d.length); });
+    
+        histSVG.append("text")
+            .attr("class", "yearLabel")
+            .attr("x", 200)
+            .attr("y", 50)
+            .text(Object.keys(years)[currYear]);
+
+        currYear += 1;
+        if (currYear == numYears) { currYear = 0; }
+    
+    }, 350);
+
+});
+
