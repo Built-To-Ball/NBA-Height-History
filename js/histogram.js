@@ -53,16 +53,7 @@ d3.csv("data/player_data.csv", function(error, players) {
 
     var years = {},
         numYears = 0,
-        currYear = 0,
-        delta = 0.001,
-        i = 0, j,
-        n = 100, // Total number of random points.
-        k = 20; // Number of points to replace per frame.
-
-    //The location of the initial hexagons
-    var rx = histWidth / 2,
-        ry = d3.random.normal(histHeight/2, 40),
-        points = d3.range(n).map(function() { return [rx, ry()]; });
+        currYear = 0;
 
     //Preprocess data
     players.forEach(function(d, index, object) {
@@ -77,6 +68,14 @@ d3.csv("data/player_data.csv", function(error, players) {
         years[d.year_start].push(d.height);
     });
 
+    //The location of the initial hexagons
+    var rx = histWidth / 2,
+        ry = d3.scale.linear()
+            .range([histHeight - 15, 15])
+            .domain(d3.extent(players, function(d) { return d.height; })).nice();
+        
+    var points = years[Object.keys(years)[0]].map(function(d) {  return new Array(rx, ry(d)); });
+    
     //Init the hexbin
     var hexbin = d3.hexbin()
         .radius(15)
@@ -84,11 +83,11 @@ d3.csv("data/player_data.csv", function(error, players) {
 
     d3.interval(function(elapsed) {
         rx = histWidth / 2,
-        ry = d3.random.normal((histHeight/2) + 40*Math.sin(elapsed * delta), 40);
-
-        for (j = 0; j < k; ++j, i = (i + 1) % n) points[i][0] = rx, points[i][1] = ry();
-
-        console.log(points);
+        ry = d3.scale.linear()
+            .range([histHeight - 15, 15])
+            .domain(d3.extent(players, function(d) { return d.height; })).nice();
+        
+        points = years[Object.keys(years)[currYear]].map(function(d) {  return new Array(rx, ry(d)); });
 
         hexagon = histSVG.selectAll("path")
             .data(hexbin(points), function(d) { return d.x + "," + d.y; });
@@ -99,9 +98,12 @@ d3.csv("data/player_data.csv", function(error, players) {
         hexagon = hexagon.enter().append("path")
             .attr("class", "hex")
             .attr("d", hexbin.hexagon(14.5))
-            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-    
-        histSVG.selectAll(".hex").attr("fill", function(d) { return histColor(d.length); });
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+            .attr("fill", "#fff");
+
+        histSVG.selectAll(".hex")
+          .transition()
+            .attr("fill", function(d) { return histColor(d.length); });
     
         histSVG.append("text")
             .attr("class", "yearLabel")
@@ -112,7 +114,7 @@ d3.csv("data/player_data.csv", function(error, players) {
         currYear += 1;
         if (currYear == numYears) { currYear = 0; }
     
-    }, 200);
+    }, 500);
 
 });
 
