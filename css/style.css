@@ -146,3 +146,13 @@ p {
     color: #fff;
     border-radius: 1px;
 }
+
+.avgwlinechart {
+    margin-top: 50px;
+}
+
+#avgwtitle {
+    fill: #000;
+    font-size: 1.5em;
+    font-weight: 100;
+}

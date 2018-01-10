@@ -25,7 +25,7 @@ var avgly = d3.scale.linear(),
 
 avglyaxis.scale(avgly).orient("left");
 avgly.range([avglheight - 20, 20]);
-avgly.domain([70,85]);
+avgly.domain([72,82]);
 
 //Init valueline
 var valueline = d3.svg.line()
