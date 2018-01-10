@@ -167,3 +167,8 @@ p {
 .total_count {
     font-size: 1.5em;
 }
+
+.zoom-brush rect.extent {
+    fill: #fff;
+    stroke: #000;
+}
