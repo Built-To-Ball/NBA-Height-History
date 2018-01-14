@@ -85,16 +85,16 @@ p {
 
 .background.bar {
     fill: #fff;
-    stroke: steelblue;
+    stroke: #C64640;
 }
 
 .foreground.bar {
-    stroke: steelblue;
-    fill: rgba(70, 130, 180, 0.5);
+    stroke: #C64640;
+    fill: rgba(198, 76, 64, 0.5);
 }
 
 .brush rect.extent {
-    fill: steelblue;
+    fill: #C64640;
     fill-opacity: .125;
 }
 
