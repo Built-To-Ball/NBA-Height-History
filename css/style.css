@@ -36,15 +36,9 @@ ul {
     position: relative;
 }
 
-#body h1 {
-    font-size: 6em;
-    font-weight: 800;
-    margin: 0;
-}
-
 #content {
     z-index: 1;
-    padding: 125px 0 125px 0;
+    padding: 100px 0 125px 0;
     max-width: 650px;
     margin-bottom: 5%;
 }
@@ -56,7 +50,7 @@ ul {
 }
 
 #intro {
-    margin-top: 5em;
+    margin-top: 3em;
     text-align: left;
 }
 
@@ -65,7 +59,9 @@ ul {
 }
 
 #title h2 {
-    margin-top: 0;
+    font-size: 4em;
+    font-weight: 600;
+    margin-top: 20px;
 }
 
 #listname, #liststat, #listinfo {
@@ -90,27 +86,53 @@ ul {
 
 #logo {
     position: fixed;
-    width: 75vw;
+    width: 80vw;
     z-index: 10;
     background: white;
-    height: 125px;
+    height: 75px;
+    border-bottom: rgb(187, 119, 31) solid 3px;
+    margin-left: -3vw;
 }
 
 #logo span {
     position: absolute;
     bottom: 0;
     width: 100%;
+    text-align: right;
+    height: 50px;
+}
+
+#logo img {
+    margin-bottom: 10px;
+}
+
+.header-title {
+    font-size: 3em;
+    width: 50%;
+    text-align: left;
+    float: left;
+    overflow: hidden;
+    margin-top: 10px; 
 }
 
 /* BLOG LINKS / FOOTER */
 
 #blog {
-    width: 75vw;
+    width: 80vw;
     font-size: 1.5em;
     height: 5%;
     bottom: 5%;
     margin-top: 5%;
     text-align: right;
+    color: rgb(0, 0, 0);
+    border-top: rgb(187, 119, 31) solid 3px;
+    margin-left: -3vw;
+    padding-top: 10px;
+}
+
+#blog a {
+    text-decoration: underline;
+    color: #000 !important;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

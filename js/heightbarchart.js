@@ -40,7 +40,7 @@ bar.append("rect")
     .attr("width", 40)
     .attr("height", function(d) { return (d.value-55)*7; })
     .style("fill", function(d) { 
-        if (d.value == 79.0) { return "rgba(192, 57, 43, 0.9)"; 
+        if (d.label == "NBA") { return "rgba(192, 57, 43, 0.9)"; 
         } else { return "rgba(127, 140, 141, 0.8)"; }
     });
 
