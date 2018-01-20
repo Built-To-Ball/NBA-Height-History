@@ -32,6 +32,11 @@ ul {
     font-size: 1.4em;
 }
 
+a {
+    color: #000;
+    text-decoration: none;
+}
+
 #body {
     position: relative;
 }
@@ -62,6 +67,10 @@ ul {
     font-size: 4em;
     font-weight: 600;
     margin-top: 20px;
+}
+
+#plotlink a {
+    text-decoration: underline;
 }
 
 #listname, #liststat, #listinfo {
