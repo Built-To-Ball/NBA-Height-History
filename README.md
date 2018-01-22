@@ -1,16 +1,42 @@
-# Built To Ball
-## A breakdown of the NBA's genetic history
-### Inspired by my fascination with visualizations mixed with my passion for sports.
+# NBA Height History
 
 Work in progress.
 
-![B2B Screenshot](Screenshot.png)
+<img align="center" src="preview.png" alt="BTB-HH">
 
-Basketball is a game of endurance, precision, agility, and speed. It takes years of dedication and hard work to become a professional athlete, for basketball however, it can take a little more than just that. Out of the four major professional sports leagues, the NBA is the only league where the players can be spotted at any public venue, simply because of their height. **Built To Ball** is dedicated to exploring the significance of a player's height in their ability to make it to the NBA and how an NBA player's height and genetic makeup has impacted the game of basketball over the years.
+## Overview
 
-## Thoughts
-The creation of Built To Ball is currently being documented in a series of blog posts that can be found [here](https://medium.com/built-to-ball).
+The NBA is the only league in which there is a clear advantage towards those with superior genetics, more specifically,
+towards height. *NBA Height History* takes a look at the height trends throughout the last 70 years of the NBA, and how
+it has impacted the game of basketball.
 
-**Stage 1: Data Collection**: The essence behind every data visualization project is the data itself. As soon as I decided I wanted to spend my holidays building something unique to further explore my new found interest of data visualization, I began to look for the perfect dataset. [Read More...](https://medium.com/built-to-ball/the-making-of-built-to-ball-e39dba7bbfa2)
+## Details
 
-**Stage 2: Data Playground**: With a data file of over 4500 records, I needed a way to visualize all of the data at once. The first thing I made was a simple D3 scatter plot, allowing me to jump right into the data while also providing a way to ease into the D3 world with a refresher on JavaScript. [Read More...](https://medium.com/built-to-ball/stage-2-playing-with-data-10524ed210ff)
+This project started out as an introduction to D3 and JavaScript but is now slowly turning into a very enjoyable adventure into
+the world of data visualization and exploring the realm of genetics in the NBA.
+
+The webpage is seperated into several sections, each with its own unique data visualization component.
+Created using D3.js and data scraped from basketball-reference.com
+
+<img align="center" src="preview1.png" alt="BTB-HH1">
+
+1. Height Comparison Bar Chart
+    - Simple bar chart using D3
+    - Inspired by Darkhorse Analytics' [Data Looks Better Naked Blog](https://www.darkhorseanalytics.com/blog/data-looks-better-naked)
+
+<img align="center" src="preview2.png" alt="BTB-HH2">
+
+2. Height Histogram
+    - Hexbin histogram animation to show the distribution change in height
+    - Inspired by Mike Bostock's [Dynamic Hexbin](https://bl.ocks.org/mbostock/7833311)
+
+<img align="center" src="preview3.png" alt="BTB-HH3">
+
+3. Average Height Trend Chart
+    - Simple line chart with hover effects
+    - Hover effects created with [d3-tip](https://github.com/Caged/d3-tip)
+
+## TODO
+ - Change the last plot to different visualization
+ - Add hover effects to any part of the plot in the line graph
+ - Continue writing about the effects height had on the game of basketball
