@@ -115,7 +115,7 @@ header span {
     text-align: right;
     align-items: center;
     margin-left: 150px;
-    border-bottom: var(--divider_color) solid 2px;
+    border-bottom: rgb(155, 117, 91) solid 2px;
 }
 
 header .logo .icon {
