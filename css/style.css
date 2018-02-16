@@ -6,159 +6,76 @@
 
 
 /* Main */
-body {
-    font-family: 'PT Sans', sans-serif;
-    font-size: 10px;
-    text-align: left;
-    margin: 0;
-}
 
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #111;
-    margin: 1em 0;
-    padding: 0;
-}
-
-p {
-    font-size: 1.5em;
-    font-weight: 200;
-}
-
-ul {
-    font-size: 1.4em;
-}
-
-a {
-    color: #000;
-    text-decoration: none;
+:root {
+    --main_dark: rgb(14, 24, 29);
+    --main_light: rgb(221, 225, 119);
+    --main_lighter: rgb(242, 245, 195);
+    --main_lighter_faint: rgba(242, 245, 195, 0.7);
+    --main_light2: rgb(202, 206, 97);
 }
 
 main {
-    position: relative;
     max-width: 1050px;
-    margin: 0 0 100px 150px;
-    padding-top: 20px;
+    min-width: 900px;
+    margin: 0 auto 0 auto;
+    padding: 75px 50px 50px 50px;
 }
 
-#content {
-    z-index: 1;
-    padding: 75px 0 125px 0;
-    max-width: 650px;
-    margin-bottom: 5%;
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 100;
+    text-align: left;
+    margin: 0;
+    color: var(--main_lighter);
+    background: var(--main_dark);
 }
 
-#content h2 {
+h2 {
     font-size: 2em;
-    font-weight: 300;
+    font-weight: 100;
+    text-align: center;
+    font-weight: 100;
+    width: 100%;
     margin-top: 2em;
 }
 
-#intro {
-    margin-top: 3em;
-    text-align: left;
-}
-
-#intro p {
-    margin: 1em 0;
-}
-
-#title h2 {
+h1 {
     font-size: 4em;
     font-weight: 600;
     margin-top: 20px;
+    text-align: center;
 }
 
-#plotlink a {
+p {
+    font-family: 'Raleway', sans-serif;
+    color: var(--main_lighter_faint);
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+a {
+    color: var(--main_light) !important;
     text-decoration: underline;
 }
-
-#listname, #liststat, #listinfo {
-    float: left;
-    font-size: 1.3em;
-    margin-top: 5px;
-}
-
-#listname {
-    width: 25%;
-}
-
-#liststat {
-    width: 15%;
-}
-
-#listinfo {
-    width: 60%;
-}
-
-
-/* LOGO / HEADER */
-
-header {
-    position: fixed;
-    height: 75px;
-    width: 100vw;
-    min-width: 650px;
-    z-index: 10;
-    background: #fff;
-}
-
-header span {
-    height: 100%;
-    width: 70%;
-    min-width: 650px;
-    position: absolute;
-    display: flex;
-    bottom: 0;
-    text-align: right;
-    align-items: center;
-    margin-left: 150px;
-    border-bottom: rgb(155, 117, 91) solid 2px;
-}
-
-header .logo .icon {
-    width: 25px;
-    height: 25px;
-    fill: #000;
-    margin:0;
-}
-
-.header-title {
-    font-size: 2em;
-    width: 65vw;
-    min-width: 600px;
-    text-align: left;
-    float: left;
-    color: #000;
-}
-
-/* BLOG LINKS / FOOTER */
-
 
 /* BLOG LINKS / FOOTER */
 
 footer {
     position: absolute;
     height: 50px;
-    width: 70vw;
-    padding-left: 150px;
-    background: #fff;
+    width: 100%;
+    background: var(--main_dark);
 }
 
 #blog {
     font-size: 1.5em;
     text-align: right;
-    color: rgb(0, 0, 0);
-    border-top: rgb(155, 117, 91) solid 2px;
-    padding: 10px 0 10px 0;
+    color: var(--main_lighter);
+    border-top: var(--main_lighter_faint) solid 2px;
+    padding: 10px 10vw 10px 0;
     min-width: 650px;
-}
-
-#blog a {
-    color: #000 !important;
-    text-decoration: underline;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -166,12 +83,23 @@ footer {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #heightchart {
-    fill: #fff;
+    fill: var(--main_lighter);
     text-align: left;
+    min-height: 400px;
+}
+
+#heightchart .info {
+    float: left;
+    width: 45%;
+}
+
+#heightchart .graphic {
+    float: right;
+    width: 50%;
 }
 
 #heightchart svg {
-    margin: 4em 0 0 10em;
+    margin: 6em 0 4em 0;
 }
 
 #heightchart p {
@@ -179,12 +107,13 @@ footer {
 }
 
 #heightchart .hCharttitle {
-    fill: #000;
+    fill: var(--main_lighter);
     font-size: 1.5em;
     font-weight: 100;
 }
 
 #heightchart .hChartvalue {
+    fill: var(--main_dark);
     text-anchor: middle;
     font-size: 1.25em;
     font-weight: 100;
@@ -194,21 +123,38 @@ footer {
     text-anchor: middle;
     font-size: 1.25em;
     font-weight: 100;
-    fill: #000;
+    fill: var(--main_lighter);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* Histogram */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#history {
-    text-align: left;
+#history .info {
+    float: right;
+    width: 55%;
+}
+
+#history .graphic {
+    float: left;
+    width: 40%;
+    padding-left: 2%;
+}
+
+#history .full-graphic {
+    clear: both;
+    width: 100%;
+}
+
+#history .full-graphic svg {
+    display: block;
+    margin: auto;
 }
 
 .axis path,
 .axis line {
     fill: none;
-    stroke: #000;
+    stroke: var(--main_lighter);
     shape-rendering: crispEdges;
 }
 
@@ -218,27 +164,30 @@ footer {
 
 .yearLabel {
     font-size: 2em;
+    fill: var(--main_lighter);
 }
 
 .yearLabelTitle {
     font-size: 1.5em;
+    fill: var(--main_lighter);
+}
+
+.tick, .label {
+    fill: var(--main_lighter);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* Average Line Graph */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.d3-tip {
-    text-align: center;
-    line-height: 1.2;
-    padding: 8px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    border-radius: 1px;
+.yearInfo {
+    font-size: 2em;
 }
 
-.avgwlinechart {
-    margin-top: 50px;
+.lCharttitle {
+    fill: var(--main_lighter);
+    font-size: 1.66em;
+    font-weight: 100;
 }
 
 #avgwtitle {
@@ -246,3 +195,81 @@ footer {
     font-size: 1.5em;
     font-weight: 100;
 }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* Donut Graph */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#weight .graphic {
+    width: 900px;
+    height: 500px;
+    margin: 0 auto 0 auto;
+}
+
+#weightdonut text {
+    fill: var(--main_lighter);
+}
+
+#weightdonut svg {
+    width: 100%;
+    height: 100%;
+}
+
+path.slice{
+	stroke-width:2px;
+}
+
+polyline{
+	opacity: .4;
+	stroke: var(--main_lighter_faint);
+	stroke-width: 3px;
+	fill: none;
+}
+
+.labelName {
+    font-size: 1.33em;
+}
+
+.chartTitle {
+    font-size: 1.33em;
+}
+
+.ticks {
+    font: 10px sans-serif;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+    stroke-linecap: round;
+}
+
+.track {
+    stroke: #000;
+    stroke-opacity: 0.3;
+    stroke-width: 10px;
+}
+
+.track-inset {
+    stroke: #697577;
+    stroke-width: 8px;
+}
+
+.track-overlay {
+    pointer-events: stroke;
+    stroke-width: 50px;
+    cursor: crosshair;
+}
+
+.handle {
+    fill: var(--main_light);
+    stroke: #000;
+    stroke-opacity: 0.5;
+    stroke-width: 1.25px;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* Mobile */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+

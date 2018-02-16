@@ -3,33 +3,23 @@
   <!-- Header -->
   <head>
     <meta charset="utf-8">
-    <title>Built to Ball</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.36, maximum-scale=1" />
+    <title>Built to Ball - Height History</title>
   </head>
 
   <!-- body -->
   <body>
     <!-- Static Logo -->
-    <header>
-      <span>
-        <a href="http://built-to-ball.com"<h1 class="header-title">BTB</h1></a>
-        <div class="logo"><a href="https://github.com/abidrahman">
-          <svg class="icon" viewBox="0 0 1000 1000" stroke="black" stroke-width="20">
-            <path d="M658,511l-0.1-0.1c48.2-15.7,83-58,83-107.4V192.9c0-62.7-56-114.1-124.5-114.1h-86.2h-35.1H492v0l-23.4,0L35.2,921.2
-            l42.5,0l207.7-403.7H492v403.7h38.3V517.6h86.2c0.8,0,1.6-0.1,2.4-0.1l-0.4,0.1l298.3,403.7l46.2,0L658,511z M303.5,482.4L492,113.9
-            v368.6H303.5z M530.3,482.4V113.9h86.2c47.5,0,86.2,35.4,86.2,79v210.6c0,43.5-38.7,79-86.2,79H530.3z"/>
-          </svg></a>
-        </div>
-      </span>
-    </header>
+    <header></header>
     <main>
 
       <!-- Content -->
       <div id="content">
-      <div id="title"><h2>Height History</h2></div>
+      <div id="title"><h1>Height History</h1></div>
 
         <!-- Intro -->
         <div id="intro">
-          <p>Basketball is a game of endurance, precision, agility, and speed. 
+          <p class="info">Basketball is a game of endurance, precision, agility, and speed. 
             It takes years of dedication and hard work to become a professional 
             athlete. For basketball however, it can take a little more than just that.
             Out of the four major professional sports leagues, the NBA is the only league
@@ -42,7 +32,7 @@
         <!-- Height Chart -->
         <div id="heightchart">
           <h2>How tall is the average NBA player?</h2>
-          <p>An NBA basketball hoop stands at 120 inches off the floor. The goal of an NBA 
+          <p class="info">An NBA basketball hoop stands at 120 inches off the floor. The goal of an NBA 
             player is simple, get the ball in the bucket, and prevent the other team from
             doing the same. This gives a distinct natural advantage to those who are able 
             to reach the hoop better than others. The longer your legs, the higher you can
@@ -52,8 +42,8 @@
             is there between the height of an NBA player, and the height of an average man 
             on the streets?
           </p>
-          <div class="hchart"></div>
-          <p>The average American male is 69 inches tall, to put this into perspective, out
+          <div class="graphic" id="hchart"></div>
+          <p class="info">The average American male is 69 inches tall, to put this into perspective, out
             of the 400+ active NBA players in the league at the beginning of 2018, 
             only one player, Isaiah Thomas, is the same height as that of an average American
             male. Not a single player is shorter than 69 inches.
@@ -63,18 +53,13 @@
         <!-- Height History -->
         <div id="history">
           <h2>Have NBA players always been this tall?</h2>
-          <p>The trend of having tall basketball players dates back to the inaugural season
+          <div class="graphic" id="histgraph"></div>
+          <p class="info">The trend of having tall basketball players dates back to the inaugural season
             in 1946-1947 when the league was known as the BAA, the Basketball Association
             of America. Among the 160 players on 11 different teams, only 2 players stood 
             below 69 inches.
           </p>
-          <div class="histgraph"></div>
-          <p>The above chart shows the height distribution of NBA players over the course
-            of the last 70 years. It may look like the distribution has stayed relatively
-            constant, which is indeed the case for the last 20 years as shown by the chart below.
-          </p>
-          <div class="avglinegraph"></div>
-          <p>The increase in exposure of players around the world, mixed with scientific 
+          <p class="info">The increase in exposure of players around the world, mixed with scientific 
             research into training and optimal nutrition has helped to slowly increase 
             the average height of NBA players from 1947 to the mid 1980's. The average height
             has stayed relatively stable over the last 20 years. This may be due to several 
@@ -84,6 +69,8 @@
             the rim. A shorter guard who is able to consistently hit threes is now worth just
             as much if not more than a pure center with a much lower three point shooting percentage.
           </p>
+          <div class="full-graphic" id="avgheightgraph"></div>
+
         </div>
 
         <!-- <div id="positions">
@@ -110,7 +97,7 @@
 
         <div id="weight">
           <h2>The Big Boys: Introducing Shaquille O'Neal</h2>
-          <p>The NBA may not be getting any taller, but it is sure getting heavier. Shaquille O'Neal is 
+          <p class="info">The NBA may not be getting any taller, but it is sure getting heavier. Shaquille O'Neal is 
             one of the most dominant centers to have played in the NBA. During his rookie
             year, Shaq was a 7-foot-1 294 lb beast who was almost unstoppable around the rim.
             Shaq reached his peak during the Los Angeles Lakers three-peat, at which point  
@@ -119,20 +106,16 @@
             To compensate for the trend of moving towards more agile and cooridnated players, the need 
             for bigger and stronger players who can dominate not just the rim but the entire court increased greatly. 
           </p>
-          <div class="avgwlinechart"></div>
-          <p>Before Shaq's rookie year, only 2% (59/2692) of all NBA players are listed at 
-            over 250lbs. However, in the 25 years since, over 17% (316/1858) percent of all NBA 
-            players are listed at over 250lbs.
-          </p>
+          <!-- <div class="graphic" id="weightdonut"></div> -->
         </div>
 
         <!-- Link to Plot -->
         <div id="plotlink">
-            <p>For an in depth look at the trend of height vs weight in all NBA players who have ever stepped
+            <p class="info">For an in depth look at the trend of height vs weight in all NBA players who have ever stepped
               on the court, view the interactive height vs weight scatter plot <a href="http://built-to-ball.com/NBA-HW-Plot/">here</a>.</p>
         </div>
 
-        <div id="conclusion">
+        <!-- <div id="conclusion">
           <h2>Heart over Height</h2>
           <p>Yes, it does help to be tall if you want to become a professional basketball
             player in the NBA. Yes, you do have a major advantage if can touch the rim
@@ -145,7 +128,7 @@
           <div id="listname">Calvin Murphy</div><div id="liststat">69 inches</div><div id="listinfo">Hall of Famer</div>
           <div id="listname">Isaiah Thomas</div><div id="liststat">69 inches</div><div id="listinfo">2017 All Star, Averaged 28.9 PPG</div>
           <div id="listname">Damon Stoudamire</div><div id="liststat">70 inches</div><div id="listinfo">1996 Rookie of the Year</div>
-        </div>
+        </div> -->
 
       </div>
     </main>
@@ -157,8 +140,9 @@
   </body>
 
   <!-- Scripts -->
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Montserrat|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
   <script src="https://d3js.org/d3-timer.v1.min.js"></script>
   <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
@@ -166,6 +150,11 @@
   <script src="js/heightbarchart.js"></script>
   <script src="js/histogram.js"></script>
   <script src="js/linechart.js"></script>
-  <script src="js/weightlinechart.js"></script>
+  <!-- <script src="js/weightdonut.js"></script> -->
+  <script>
+    $(function() {
+      $("header").load("header.html");
+    })
+  </script>
 
 </html>
