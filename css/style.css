@@ -4,78 +4,77 @@
     The main stylesheet 
 */
 
-
 /* Main */
 
 :root {
-    --main_dark: rgb(14, 24, 29);
-    --main_light: rgb(221, 225, 119);
-    --main_lighter: rgb(242, 245, 195);
-    --main_lighter_faint: rgba(242, 245, 195, 0.7);
-    --main_light2: rgb(202, 206, 97);
+  --main_dark: rgb(14, 24, 29);
+  --main_light: rgb(221, 225, 119);
+  --main_lighter: rgb(242, 245, 195);
+  --main_lighter_faint: rgba(242, 245, 195, 0.7);
+  --main_light2: rgb(202, 206, 97);
 }
 
 main {
-    max-width: 1050px;
-    min-width: 900px;
-    margin: 0 auto 0 auto;
-    padding: 75px 50px 50px 50px;
+  max-width: 1050px;
+  min-width: 900px;
+  margin: 0 auto 0 auto;
+  padding: 75px 50px 50px 50px;
 }
 
 body {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-size: 10px;
-    font-weight: 100;
-    text-align: left;
-    margin: 0;
-    color: var(--main_lighter);
-    background: var(--main_dark);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 10px;
+  font-weight: 100;
+  text-align: left;
+  margin: 0;
+  color: var(--main_lighter);
+  background: var(--main_dark);
 }
 
 h2 {
-    font-size: 2em;
-    font-weight: 100;
-    text-align: center;
-    font-weight: 100;
-    width: 100%;
-    margin-top: 2em;
+  font-size: 2em;
+  font-weight: 100;
+  text-align: center;
+  font-weight: 100;
+  width: 100%;
+  margin-top: 2em;
 }
 
 h1 {
-    font-size: 4em;
-    font-weight: 600;
-    margin-top: 20px;
-    text-align: center;
+  font-size: 4em;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
 }
 
 p {
-    font-family: 'Raleway', sans-serif;
-    color: var(--main_lighter_faint);
-    font-size: 1.5em;
-    font-weight: 100;
+  font-family: "Raleway", sans-serif;
+  color: var(--main_lighter_faint);
+  font-size: 1.5em;
+  font-weight: 100;
 }
 
 a {
-    color: var(--main_light) !important;
-    text-decoration: underline;
+  color: var(--main_light) !important;
+  text-decoration: underline;
 }
 
 /* BLOG LINKS / FOOTER */
 
 footer {
-    position: absolute;
-    height: 50px;
-    width: 100%;
-    background: var(--main_dark);
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  background: var(--main_dark);
 }
 
 #blog {
-    font-size: 1.5em;
-    text-align: right;
-    color: var(--main_lighter);
-    border-top: var(--main_lighter_faint) solid 2px;
-    padding: 10px 10vw 10px 0;
-    min-width: 650px;
+  font-size: 1.5em;
+  text-align: right;
+  color: var(--main_lighter);
+  border-top: var(--main_lighter_faint) solid 2px;
+  padding: 10px 10vw 10px 0;
+  min-width: 650px;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -83,47 +82,47 @@ footer {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #heightchart {
-    fill: var(--main_lighter);
-    text-align: left;
-    min-height: 400px;
+  fill: var(--main_lighter);
+  text-align: left;
+  min-height: 400px;
 }
 
 #heightchart .info {
-    float: left;
-    width: 45%;
+  float: left;
+  width: 45%;
 }
 
 #heightchart .graphic {
-    float: right;
-    width: 50%;
+  float: right;
+  width: 50%;
 }
 
 #heightchart svg {
-    margin: 6em 0 4em 0;
+  margin: 6em 0 4em 0;
 }
 
 #heightchart p {
-    text-align: left;
+  text-align: left;
 }
 
 #heightchart .hCharttitle {
-    fill: var(--main_lighter);
-    font-size: 1.5em;
-    font-weight: 100;
+  fill: var(--main_lighter);
+  font-size: 1.5em;
+  font-weight: 100;
 }
 
 #heightchart .hChartvalue {
-    fill: var(--main_dark);
-    text-anchor: middle;
-    font-size: 1.25em;
-    font-weight: 100;
+  fill: var(--main_dark);
+  text-anchor: middle;
+  font-size: 1.25em;
+  font-weight: 100;
 }
 
 #heightchart .hChartlabel {
-    text-anchor: middle;
-    font-size: 1.25em;
-    font-weight: 100;
-    fill: var(--main_lighter);
+  text-anchor: middle;
+  font-size: 1.25em;
+  font-weight: 100;
+  fill: var(--main_lighter);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -131,49 +130,50 @@ footer {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #history .info {
-    float: right;
-    width: 55%;
+  float: right;
+  width: 55%;
 }
 
 #history .graphic {
-    float: left;
-    width: 40%;
-    padding-left: 2%;
+  float: left;
+  width: 40%;
+  padding-left: 2%;
 }
 
 #history .full-graphic {
-    clear: both;
-    width: 100%;
+  clear: both;
+  width: 100%;
 }
 
 #history .full-graphic svg {
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
 }
 
 .axis path,
 .axis line {
-    fill: none;
-    stroke: var(--main_lighter);
-    shape-rendering: crispEdges;
+  fill: none;
+  stroke: var(--main_lighter);
+  shape-rendering: crispEdges;
 }
 
 .histgraph {
-    text-align: center;
+  text-align: center;
 }
 
 .yearLabel {
-    font-size: 2em;
-    fill: var(--main_lighter);
+  font-size: 2em;
+  fill: var(--main_lighter);
 }
 
 .yearLabelTitle {
-    font-size: 1.5em;
-    fill: var(--main_lighter);
+  font-size: 1.5em;
+  fill: var(--main_lighter);
 }
 
-.tick, .label {
-    fill: var(--main_lighter);
+.tick,
+.label {
+  fill: var(--main_lighter);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -181,19 +181,19 @@ footer {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .yearInfo {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 .lCharttitle {
-    fill: var(--main_lighter);
-    font-size: 1.66em;
-    font-weight: 100;
+  fill: var(--main_lighter);
+  font-size: 1.66em;
+  font-weight: 100;
 }
 
 #avgwtitle {
-    fill: #000;
-    font-size: 1.5em;
-    font-weight: 100;
+  fill: #000;
+  font-size: 1.5em;
+  font-weight: 100;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -201,75 +201,73 @@ footer {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #weight .graphic {
-    width: 900px;
-    height: 500px;
-    margin: 0 auto 0 auto;
+  width: 900px;
+  height: 500px;
+  margin: 0 auto 0 auto;
 }
 
 #weightdonut text {
-    fill: var(--main_lighter);
+  fill: var(--main_lighter);
 }
 
 #weightdonut svg {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-path.slice{
-	stroke-width:2px;
+path.slice {
+  stroke-width: 2px;
 }
 
-polyline{
-	opacity: .4;
-	stroke: var(--main_lighter_faint);
-	stroke-width: 3px;
-	fill: none;
+polyline {
+  opacity: 0.4;
+  stroke: var(--main_lighter_faint);
+  stroke-width: 3px;
+  fill: none;
 }
 
 .labelName {
-    font-size: 1.33em;
+  font-size: 1.33em;
 }
 
 .chartTitle {
-    font-size: 1.33em;
+  font-size: 1.33em;
 }
 
 .ticks {
-    font: 10px sans-serif;
+  font: 10px sans-serif;
 }
 
 .track,
 .track-inset,
 .track-overlay {
-    stroke-linecap: round;
+  stroke-linecap: round;
 }
 
 .track {
-    stroke: #000;
-    stroke-opacity: 0.3;
-    stroke-width: 10px;
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
 }
 
 .track-inset {
-    stroke: #697577;
-    stroke-width: 8px;
+  stroke: #697577;
+  stroke-width: 8px;
 }
 
 .track-overlay {
-    pointer-events: stroke;
-    stroke-width: 50px;
-    cursor: crosshair;
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: crosshair;
 }
 
 .handle {
-    fill: var(--main_light);
-    stroke: #000;
-    stroke-opacity: 0.5;
-    stroke-width: 1.25px;
+  fill: var(--main_light);
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
 }
-
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* Mobile */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
